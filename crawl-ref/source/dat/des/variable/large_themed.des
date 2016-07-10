@@ -1147,20 +1147,20 @@ MONS:   w:1 deep elf knight / w:1 deep elf archer / w:8 orc warrior / \
 MONS:   w:12 orc knight / w:3 deep elf knight / w:3 deep elf archer / \
         w:4 centaur warrior / w:2 yaktaur captain
 MONS:   orc knight
-KMONS:  4 = patrolling Wiglaf, patrolling orc warlord
+KMONS:  4 = patrolling orc warlord
 : elseif you.absdepth() < 26 then
 MONS:   w:1 deep elf knight / w:1 deep elf archer / w:8 orc knight / \
         w:4 centaur warrior / w:2 yaktaur captain
 MONS:   w:8 orc knight / w:1 deep elf knight / w:1 deep elf archer / \
         w:6 yaktaur captain
 MONS:   orc warlord
-KMONS:  4 = patrolling Wiglaf, patrolling deep elf blademaster
+KMONS:  4 = patrolling deep elf blademaster
 : else
 MONS:   w:1 deep elf knight / w:1 deep elf archer / w:8 orc knight / \
         w:6 yaktaur captain
 MONS:   w:4 orc warlord / w:1 deep elf blademaster / w:3 deep elf master archer
 MONS:   deep elf blademaster
-KMONS:  4 = patrolling Wiglaf, patrolling draconian knight
+KMONS:  4 = patrolling draconian knight
 : end
 SUBST:  5 = 2221'
 # Lots of loot in this one. In true okawaru fashion, most of it is junk!
