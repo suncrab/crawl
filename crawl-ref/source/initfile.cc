@@ -224,10 +224,11 @@ const vector<GameOption*> game_options::build_options_list()
         new BoolGameOption(SIMPLE_NAME(tile_show_demon_tier), false),
         // disabled by default due to performance issues
         new BoolGameOption(SIMPLE_NAME(tile_water_anim), !USING_WEB_TILES),
+        new BoolGameOption(SIMPLE_NAME(tile_misc_anim), true),
+#else
         new BoolGameOption(mlist_targeting,
                            { "mlist_targeting", "mlist_targetting" },
                            false),
-        new BoolGameOption(SIMPLE_NAME(tile_misc_anim), true),
 #endif
 #ifdef USE_TILE_WEB
         new BoolGameOption(SIMPLE_NAME(tile_realtime_anim), false),
@@ -2871,9 +2872,6 @@ void game_options::read_option_line(const string &str, bool runscript)
     else INT_OPTION(mlist_min_height, 0, INT_MAX);
     else INT_OPTION(msg_min_height, MSG_MIN_HEIGHT, INT_MAX);
     else INT_OPTION(msg_max_height, MSG_MIN_HEIGHT, INT_MAX);
-#ifndef USE_TILE
-    else BOOL_OPTION_NAMED("mlist_targetting", mlist_targeting);
-#endif
     else if (key == "view_lock")
     {
         const bool lock = read_bool(field, true);
