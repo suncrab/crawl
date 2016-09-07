@@ -262,9 +262,9 @@ const vector<GameOption*> game_options::build_options_list()
         new BoolGameOption(SIMPLE_NAME(restart_after_save), false),
         new BoolGameOption(SIMPLE_NAME(restart_after_game), USING_LOCAL_TILES),
         new StringGameOption(SIMPLE_NAME(map_file_name), ""),
-        new StringGameOption(SIMPLE_NAME(save_dir), _get_save_path("/saves/")),
+        new StringGameOption(SIMPLE_NAME(save_dir), _get_save_path("saves/")),
         new StringGameOption(SIMPLE_NAME(morgue_dir),
-                             _get_save_path("/morgue/")),
+                             _get_save_path("morgue/")),
 #endif
 #ifdef USE_TILE
         new BoolGameOption(SIMPLE_NAME(tile_skip_title), false),
@@ -913,7 +913,8 @@ static string _resolve_dir(string path, string suffix)
 static string _get_save_path(string subdir)
 {
 #if defined(TARGET_OS_MACOSX)
-    return _user_home_subpath("Library/Application Support/" CRAWL) + subdir;
+    return _user_home_subpath("Library/Application Support/" CRAWL)
+            + "/" + subdir;
 #else
     return _resolve_dir(SysEnv.crawl_dir, subdir);
 #endif
