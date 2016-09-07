@@ -7,6 +7,7 @@
 
 #include "colour.h"
 #include "game-options.h"
+#include "options.h"
 
 static unsigned _curses_attribute(const string &field)
 {

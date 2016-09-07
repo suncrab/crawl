@@ -84,7 +84,7 @@ const string game_options::interrupt_prefix = "interrupt_";
 system_environment SysEnv;
 game_options Options;
 
-static string _get_tmp_path_base();
+static string _get_save_path(string subdir);
 
 const vector<GameOption*> game_options::build_options_list()
 {
@@ -243,10 +243,9 @@ const vector<GameOption*> game_options::build_options_list()
         new BoolGameOption(SIMPLE_NAME(restart_after_save), false),
         new BoolGameOption(SIMPLE_NAME(restart_after_game), USING_LOCAL_TILES),
         new StringGameOption(SIMPLE_NAME(map_file_name), ""),
-        new StringGameOption(SIMPLE_NAME(save_dir),
-                             _get_tmp_path_base() + "/saves/"),
+        new StringGameOption(SIMPLE_NAME(save_dir), _get_save_path("/saves/")),
         new StringGameOption(SIMPLE_NAME(morgue_dir),
-                             _get_tmp_path_base() + "/morgue/"),
+                             _get_save_path("/morgue/")),
 #endif
 #ifdef USE_TILE
         new BoolGameOption(SIMPLE_NAME(tile_skip_title), false),
@@ -868,9 +867,13 @@ static string _resolve_dir(const char* path, const char* suffix)
 }
 #endif
 
-static string _get_tmp_path_base()
+static string _get_save_path(string subdir)
 {
-    return _user_home_subpath("Library/Application Support/" CRAWL);
+#if defined(TARGET_OS_MACOSX)
+    return _user_home_subpath("Library/Application Support/" CRAWL) + subdir;
+#else
+    return _resolve_dir(SysEnv.crawl_dir.c_str(), subdir);
+#endif
 }
 
 void game_options::reset_options()
@@ -911,10 +914,7 @@ void game_options::reset_options()
     UNUSED(_resolve_dir);
 
     if (SysEnv.macro_dir.empty())
-        macro_dir  = _get_tmp_path_base();
-#else
-    save_dir   = _resolve_dir(SysEnv.crawl_dir.c_str(), "saves/");
-    morgue_dir = _resolve_dir(SysEnv.crawl_dir.c_str(), "morgue/");
+        macro_dir  = _get_save_path("");
 #endif
 
 #if defined(SHARED_DIR_PATH)
