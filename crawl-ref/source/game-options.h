@@ -123,6 +123,7 @@ private:
     string default_value;
 };
 
+#ifdef USE_TILE
 class TileColGameOption : public GameOption
 {
 public:
@@ -137,6 +138,7 @@ private:
     VColour &value;
     VColour default_value;
 };
+#endif
 
 // T must be convertible to a string.
 template<typename T>
