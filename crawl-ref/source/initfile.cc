@@ -862,7 +862,7 @@ void game_options::set_activity_interrupt(const string &activity_name,
 }
 
 #if defined(DGAMELAUNCH)
-static string _resolve_dir(const char* path, const char* suffix)
+static string _resolve_dir(string path, string suffix)
 {
     return catpath(path, "");
 }
@@ -890,12 +890,12 @@ static string _user_home_subpath(const string &subpath)
     return catpath(_user_home_dir(), subpath);
 }
 
-static string _resolve_dir(const char* path, const char* suffix)
+static string _resolve_dir(string path, string suffix)
 {
     if (path[0] != '~')
         return catpath(string(path), suffix);
     else
-        return _user_home_subpath(catpath(path + 1, suffix));
+        return _user_home_subpath(catpath(path.substr(1), suffix));
 }
 #endif
 
