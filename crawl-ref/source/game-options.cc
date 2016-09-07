@@ -94,3 +94,11 @@ string IntGameOption::loadFromString(string field, rc_line_type) const
     value = val;
     return "";
 }
+
+void StringGameOption::reset() const { value = default_value; }
+
+string StringGameOption::loadFromString(string field, rc_line_type) const
+{
+    value = field;
+    return "";
+}
