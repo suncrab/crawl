@@ -112,11 +112,13 @@ const vector<GameOption*> game_options::build_options_list()
 #else
         false;
 #endif
+#ifdef USE_TILE
     const bool USING_WEB_TILES =
 #if defined(USE_TILE_WEB)
         true;
 #else
         false;
+#endif
 #endif
 
     #define SIMPLE_NAME(_opt) _opt, {#_opt}
@@ -879,7 +881,7 @@ static string _get_save_path(string subdir)
 #if defined(TARGET_OS_MACOSX)
     return _user_home_subpath("Library/Application Support/" CRAWL) + subdir;
 #else
-    return _resolve_dir(SysEnv.crawl_dir.c_str(), subdir);
+    return _resolve_dir(SysEnv.crawl_dir, subdir);
 #endif
 }
 
